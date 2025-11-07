@@ -2,6 +2,7 @@
   "name": "spacetraders-client",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://avnergomes.github.io/spacetraders-v1",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -55,28 +56,21 @@
     "typescript": "^5.3.2",
     "vite": "^5.0.7",
     "vite-plugin-pwa": "^0.17.4",
-    "workbox-window": "^7.0.0"
+    "workbox-window": "^7.0.0",
+    "gh-pages": "^6.1.1"
   },
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "test": "vitest",
     "preview": "vite preview",
+    "test": "vitest",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
