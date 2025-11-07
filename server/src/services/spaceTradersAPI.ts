@@ -16,8 +16,6 @@ interface RateLimitInfo {
 export class SpaceTradersAPI {
   private client: AxiosInstance;
   private rateLimitInfo: RateLimitInfo | null = null;
-  private requestQueue: Array<() => Promise<any>> = [];
-  private isProcessingQueue = false;
 
   constructor(config: SpaceTradersConfig) {
     this.client = axios.create({
