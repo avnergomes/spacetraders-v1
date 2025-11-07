@@ -36,3 +36,12 @@ const port = env.port;
 app.listen(port, () => {
   logger.info(`Server listening on port ${port}`);
 });
+app.use(express.json())
+
+app.use((req, res, next) => {
+  const token = req.headers.authorization?.replace('Bearer ', '') || process.env.SPACETRADERS_TOKEN
+  if (!token) return res.status(401).json({ error: 'Token não fornecido.' })
+  req.headers.authorization = `Bearer ${token}`
+  next()
+})
+
