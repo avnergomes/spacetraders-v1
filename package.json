@@ -18,3 +18,14 @@
     "concurrently": "^8.2.2"
   }
 }
+{
+  "homepage": "https://avnergomes.github.io/spacetraders-v1",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
+
