@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
 import { logger } from '../utils/logger';
 import { redis } from './redis';
+import { env } from '../config/env';
 
 interface SpaceTradersConfig {
   apiUrl: string;
@@ -361,8 +362,12 @@ export class SpaceTradersAPI {
 
 // Create singleton instance
 const config: SpaceTradersConfig = {
-  apiUrl: process.env.SPACETRADERS_API_URL || 'https://api.spacetraders.io/v2',
-  token: process.env.SPACETRADERS_TOKEN || ''
+  apiUrl: env.spaceTradersApiUrl,
+  token: env.spaceTradersToken
 };
+
+if (!config.token) {
+  logger.warn('SPACETRADERS_TOKEN is not configured. Authenticated requests will fail until it is provided.');
+}
 
 export const spaceTradersAPI = new SpaceTradersAPI(config);

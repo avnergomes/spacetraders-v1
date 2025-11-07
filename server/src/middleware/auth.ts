@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
+import { env } from '../config/env';
 import { HttpError } from './errorHandler';
 
 export const authMiddleware = (req: Request, _res: Response, next: NextFunction): void => {
-  const expectedToken = process.env.SPACETRADERS_TOKEN;
+  const expectedToken = env.spaceTradersToken;
 
   if (!expectedToken) {
     next(new HttpError(500, 'SpaceTraders token is not configured.'));
